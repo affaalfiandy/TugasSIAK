@@ -34,7 +34,7 @@ export const BtnGrayStyle = styled(Btn)`
     position: ${({ btnPosition }) => btnPosition};
     line-height: ${({ btnLineHeight }) => btnLineHeight || '180%'};
     font-size: ${({ btnFontSize }) => btnFontSize || '1rem'};
-    visibility: ${({ btnVisibility }) => btnVisibility || 'visible'};
+    display: ${({ btnDisplay }) => btnDisplay || 'inline'};
     color: black;
     top:0;
     bottom: 0;
@@ -42,5 +42,25 @@ export const BtnGrayStyle = styled(Btn)`
     right: 0;
     :hover {
         background-color: #C8C6C6;
+    }
+`;
+
+export const BtnUjianStyle = styled(Btn)`
+    background-color:#C8C6C6;
+    width: ${({ btnWidth }) => btnWidth};
+    height: ${({ btnHeight }) => btnHeight};
+    margin: ${({ btnMargin }) => btnMargin};
+    position: ${({ btnPosition }) => btnPosition};
+    line-height: ${({ btnLineHeight }) => btnLineHeight || '180%'};
+    font-size: ${({ btnFontSize }) => btnFontSize || '1rem'};
+    display: ${({ btnDisplay }) => btnDisplay || 'inline'};
+    color: black;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    :hover {
+        background-color: #4B6587;
+        color:white;
     }
 `;
