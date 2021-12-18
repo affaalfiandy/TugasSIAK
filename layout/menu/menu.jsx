@@ -17,7 +17,9 @@ const MenuLayout = () => {
                     <BtnUjian btnMargin="20px" btnWidth="200px" btnHeight="50px">Pilihan Ganda</BtnUjian>
                 </Link>
                 <br/>
-                <BtnUjian btnWidth="200px" btnHeight="50px">Essay</BtnUjian>
+                <Link href="/ujian/essay">
+                    <BtnUjian btnWidth="200px" btnHeight="50px">Essay</BtnUjian>
+                </Link>
             </MenuContent>
         </MenuWrap>
     )

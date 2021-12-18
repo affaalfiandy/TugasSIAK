@@ -35,8 +35,8 @@ export const TitleStyle = styled.h1`
 
 export const ParagrafStyle = styled.p`
     font-family: ${fonts.ABeeZee};
-    color: ${({ txWhite }) => (txWhite ? textColor.primary_white : textColor.primary_400)};
-    font-size: 1.125rem;
+    color: ${({ txColor }) => (txColor || textColor.primary_400)};
+    font-size: ${({ txSize }) => (txSize || '1.125rem')};
     font-weight: 400;
     line-height: ${({ txLineHeight }) => txLineHeight || '180%'};
     text-align: ${({ txAlign }) => txAlign};

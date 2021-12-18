@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
 const Pages = dynamic(
-    () => import("../../layout/ujian/PilihanGanda"),
+    () => import("../../layout/ujian/essay"),
     { ssr: false }
 )
 

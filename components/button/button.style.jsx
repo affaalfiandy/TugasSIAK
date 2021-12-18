@@ -64,3 +64,15 @@ export const BtnUjianStyle = styled(Btn)`
         color:white;
     }
 `;
+
+export const BtnSoalStyle = styled(Btn)`
+    background-color: ${({ btnColor }) => btnColor || '#C8C6C6'};
+    margin:2px;
+    width: 50px;
+    height: 50px;
+    border-radius:10px;
+    :hover {
+        background-color: #4B6587;
+        color:white;
+    }
+`;
