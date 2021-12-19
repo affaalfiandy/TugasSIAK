@@ -18,7 +18,7 @@ const LoginSiswa = () => {
     return(
         <PageLSWrapper>
             <LoginSiswaWrapper>
-                <Title txSize='4rem'>EXAMORPHOSIS</Title>
+                <Title txSize='4rem'>ELXAM</Title>
                 <P>masuk sebagai siswa</P>
                 <FormLogin type='submit' onSubmit={LoginSiswaHandler}>
                     <Label lblMargin='5px'>Username</Label>

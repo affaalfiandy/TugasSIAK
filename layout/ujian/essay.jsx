@@ -3,6 +3,7 @@ import { PagePilganWrapper, PagePilganContent, SoalWraper, PilihanWrap, SoalCont
 import { P } from "../../components/typography/typo"
 
 import { useState } from "react"
+import Link from "next/link"
 
 const UjianEssayLayout = () => {
     const pilihan = {
@@ -43,7 +44,9 @@ const UjianEssayLayout = () => {
             <BtnWrap>
                 <BtnContent>
                 <BtnGray btnMargin="5px" btnWidth="120px" btnHeight="50px">Sebelumnya</BtnGray>
+                <Link href="/ujian/konfirmasi">
                 <BtnBlue btnMargin="5px" btnWidth="120px" btnHeight="50px">Selanjutnya</BtnBlue>
+                </Link>
                 </BtnContent>
                 <TandaSoalContent>
                 <input type="radio" id="markedQuestion" onClick={choiceHandler}/>

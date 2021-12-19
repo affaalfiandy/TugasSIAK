@@ -67,7 +67,7 @@ const SiswaLayout = () =>{
     return(
         <PageSiswaWrapper>
             <PageSiswaContent>
-                <Title txSize='4rem'>EXAMORPHOSIS</Title>
+                <Title txSize='4rem'>ELXAM</Title>
                 <InfoWrapper>
                     <InfoItemLeft>
                         <P>Nama</P>

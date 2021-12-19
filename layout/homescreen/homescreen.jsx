@@ -11,7 +11,7 @@ const HomeScreen = () =>{
     return(
         <HomeWrapper>
             <ContentWrapper>
-                <Title txSize='4rem'>EXAMORPHOSIS</Title>
+                <Title txSize='4rem'>ELXAM</Title>
                 <P>masuk sebagai</P>
                 <BtnDiv>
                     <Link href="/loginguru">
