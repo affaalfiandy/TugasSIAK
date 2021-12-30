@@ -18,8 +18,8 @@ const LoginSiswa = () => {
     return(
         <PageLSWrapper>
             <LoginSiswaWrapper>
-                <Title txSize='4rem'>ELXAM</Title>
-                <P>masuk sebagai siswa</P>
+                <Title txSize='4rem'>Tugas SIAK</Title>
+                <P>masuk sebagai kasir</P>
                 <FormLogin type='submit' onSubmit={LoginSiswaHandler}>
                     <Label lblMargin='5px'>Username</Label>
                     <TextBox txbMargin='5px' name='username' type='text'placeholder="masukkan username"/>
@@ -27,7 +27,7 @@ const LoginSiswa = () => {
                     <Label lblMargin='5px'>Password </Label>
                     <TextBox txbMargin='5px' name='password' type='password'placeholder="masukkan password"/>
                     <br/>
-                    <Link href="/siswa?nama=AffaAlfiandy">
+                    <Link href="/kasir">
                         <BtnBlue btnMargin='10px' btnHeight='30px' btnWidth='90px'>Login</BtnBlue>
                     </Link>
                 </FormLogin>

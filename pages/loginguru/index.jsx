@@ -9,7 +9,7 @@ const LoginGuruPage = () =>{
     return(
         <>
         <Head>
-            <title>Login Guru</title>
+            <title>Login Admin</title>
             <meta charset="UTF-8" />
         </Head>
         <Pages/>

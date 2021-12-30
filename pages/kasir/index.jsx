@@ -1,16 +1,16 @@
-import dynamic from "next/dynamic";
 import Head from "next/head";
+import dynamic from 'next/dynamic'
 
 const Pages = dynamic(
-    () => import('../../layout/siswa/siswa'),
+    () => import('../../layout/kasir/kasir'),
     { ssr: false }
 )
 
-const Siswa = () =>{
+const LoginSiswaPage = () =>{
     return(
         <>
         <Head>
-            <title>Ruang Tunggu</title>
+            <title>Login Kasir</title>
             <meta charset="UTF-8" />
         </Head>
         <Pages/>
@@ -18,4 +18,4 @@ const Siswa = () =>{
     )
 }
 
-export default Siswa
+export default LoginSiswaPage

@@ -11,14 +11,14 @@ const HomeScreen = () =>{
     return(
         <HomeWrapper>
             <ContentWrapper>
-                <Title txSize='4rem'>ELXAM</Title>
+                <Title txSize='4rem'>Tugas SIAK</Title>
                 <P>masuk sebagai</P>
                 <BtnDiv>
                     <Link href="/loginguru">
-                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Guru</p></BtnBlue>
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Admin</p></BtnBlue>
                     </Link>
                     <Link href="/loginsiswa">
-                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Siswa</p></BtnBlue>
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Kasir</p></BtnBlue>
                     </Link>
                 </BtnDiv>
             </ContentWrapper>

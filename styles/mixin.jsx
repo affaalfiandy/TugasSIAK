@@ -20,14 +20,8 @@ const device = {
 };
 
 const mainColor = {
-	primary: '#4B6587',
-	primary_hover: '#5586C6',
-	primary_pressed: '#4B3D8F',
-	primary_ghost: '#EFECFE',
-	primary_lightGray: '#999999',
-	primary_light: '#DBE7F0',
-	secondary: '#0F588A',
-	secondary_white: '#FFFFFF',
+	primary_blue: '#4B6587',
+	primary_blue_hover: '#5586C6',
 	green_success: 'rgba(22, 137, 34, 1)',
 	red_danger: 'rgba(234, 26, 26, 1)',
 };

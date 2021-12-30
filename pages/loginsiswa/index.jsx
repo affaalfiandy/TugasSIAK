@@ -10,7 +10,7 @@ const LoginSiswaPage = () =>{
     return(
         <>
         <Head>
-            <title>Login Siswa</title>
+            <title>Login Kasir</title>
             <meta charset="UTF-8" />
         </Head>
         <Pages/>

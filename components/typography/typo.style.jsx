@@ -3,8 +3,8 @@ import { fonts, textColor, device } from '../../styles/mixin';
 
 export const TitleStyle = styled.h1`
     font-family: ${fonts.ABeeZee};
-    color: ${({ txWhite }) => (txWhite ? textColor.primary_white : textColor.primary_800)};
-    font-size: ${({ txSize }) => (txSize ? '2.25rem' : '1.5rem')};
+    color: ${({ txColor }) => (txColor || textColor.primary_800)};
+    font-size: ${({ txSize }) => (txSize || '1.5rem')};
     font-weight: ${({ txWeight }) => (txWeight ? '700' : '600')};
     line-height: ${({ txLineHeight }) => txLineHeight || '150%'};
     text-align: ${({ txAlign }) => txAlign};
@@ -19,9 +19,7 @@ export const TitleStyle = styled.h1`
         css`
         color: ${({ txColor }) => txColor};
 
-        :hover {
-            color: ${({ hvColor }) => hvColor};
-        }
+        
         `}
 
     ${({ txMobile }) =>
@@ -63,4 +61,23 @@ export const ParagrafStyle = styled.p`
             font-size: 0.875rem;
         }
         `}
+`;
+
+export const LinkTextStyle = styled.a`
+    font-family: ${fonts.ABeeZee};
+    color: ${({ txColor }) => (txColor || textColor.primary_400)};
+    font-size: ${({ txSize }) => (txSize || '1.125rem')};
+    font-weight: 400;
+    line-height: ${({ txLineHeight }) => txLineHeight || '180%'};
+    text-align: ${({ txAlign }) => txAlign};
+    margin: ${({ txMargin }) => txMargin};
+    padding: ${({ txPadding }) => txPadding};
+    background-color: ${({ txBackground }) => txBackground};
+    display: ${({ txDisplay }) => txDisplay};
+    cursor:pointer;
+    :hover {
+        border-radius:10px;
+        color:#4B6587;
+        font-size:1.2rem;
+    }
 `;
