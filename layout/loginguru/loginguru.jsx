@@ -15,8 +15,8 @@ const LoginSiswa = () => {
     return(
         <PageLSWrapper>
             <LoginSiswaWrapper>
-                <Title txSize='4rem'>ELXAM</Title>
-                <P>masuk sebagai Admin</P>
+                <Title txSize='4rem'>Penjualan</Title>
+                <P>Masuk Penjualan</P>
                 <FormLogin type='submit' onSubmit={LoginSiswaHandler}>
                     <Label lblMargin='5px'>Username</Label>
                     <TextBox txbMargin='5px' name='username' type='text'placeholder="masukkan username"/>

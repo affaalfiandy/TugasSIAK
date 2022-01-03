@@ -17,7 +17,7 @@ const HomeScreen = () =>{
                     <Link href="/loginguru">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Admin</p></BtnBlue>
                     </Link>
-                    <Link href="/loginsiswa">
+                    <Link href="/loginpembelian">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Kasir</p></BtnBlue>
                     </Link>
                 </BtnDiv>

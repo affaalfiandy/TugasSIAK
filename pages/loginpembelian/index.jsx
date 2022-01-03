@@ -2,7 +2,7 @@ import Head from "next/head";
 import dynamic from 'next/dynamic'
 
 const Pages = dynamic(
-    () => import('../../layout/loginsiswa/loginsiswa'),
+    () => import('../../layout/loginpembelian/loginpembelian'),
     { ssr: false }
 )
 

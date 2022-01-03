@@ -1,22 +1,41 @@
-import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput, KolomInput } from "./kasir.style";
+import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput } from "./kasir.style";
 import { P, Title, A } from "../../components/typography/typo";
 import { BtnBlue } from "../../components/button/button";
+import PopUpPembelian from "../PopUpPembelian/PopUpPembelian";
+
+import { useState, useEffect } from "react";
 
 const Kasir = (props) => {
-    const DataNilai = [
-        {
-            kode:"090998800",
-            nama:"Jus Jeruk",
-            qty:1,
-            diskon:20,
-            harga:10000,
-            total:8000
-        },
-    ]
+    const [DataNilai,setDataNilai] = useState([])
+    useEffect(()=>{
+        setDataNilai(JSON.parse(localStorage.getItem("pembelian")))
+    }
+        ,[DataNilai]
+    )
+
+    const closePopUp = (val) =>{
+        setPopUpPemb(val)
+    }
+    const addData = (data) => {
+        if(DataNilai==null){
+            const datain = []
+            datain.push(data)
+            setDataNilai(datain)
+            localStorage.setItem("pembelian",JSON.stringify(datain))
+        }
+        else{
+        const temp = [...DataNilai]
+        temp.push(data)
+        setDataNilai(temp)
+        localStorage.setItem("pembelian",JSON.stringify(temp))
+        }
+    }
+    const [popUpPembayaran, setPopUpPemb] = useState(false)
     return(
         <HistoryWrap>
+            {popUpPembayaran && <PopUpPembelian closePopUp={closePopUp} addData={addData}/>}
             <HistoryContent>
-                <Title>Kasir</Title>
+                <Title>Pembelian</Title>
                 <TabelJudul>
                     <KolomJudul>
                         <Title>Kode Barang</Title>
@@ -37,7 +56,7 @@ const Kasir = (props) => {
                         <Title>Total Harga</Title>
                     </KolomJudul>
                 </TabelJudul>
-                    {DataNilai.map((val)=>
+                    {DataNilai==null ? <P txMargin="10px">Data Kosong</P> : DataNilai.map((val)=>
                     <Tabel>
                     <Kolom>
                         <P txColor="#242424">{val.kode}</P>
@@ -60,16 +79,7 @@ const Kasir = (props) => {
                     </Tabel>
                     )}
                     <TabelInput>
-                        <KolomInput>
-                            <input placeholder="kode barang" type="text"/>
-                        </KolomInput>
-                        <KolomInput>
-                            <input placeholder="jumlah" type="text"/>
-                        </KolomInput>
-                        <KolomInput>
-                            <input placeholder="diskon" type="text"/>
-                        </KolomInput>
-                        <BtnBlue btnWidth="100px">Tambah</BtnBlue>
+                        <BtnBlue btnWidth="10vw" onClick={()=>{setPopUpPemb(true)}}>Tambah Barang</BtnBlue>
                     </TabelInput>
             </HistoryContent>
         </HistoryWrap>

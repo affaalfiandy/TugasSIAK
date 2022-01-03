@@ -47,11 +47,6 @@ position:fixed;
 bottom:100px;
 display:inline-flex;
 width:90%;
-left:50px;
-`;
-
-export const KolomInput = styled.div`
-width:15%;
-display:block;
 text-align:center;
+left:45vw;
 `;
