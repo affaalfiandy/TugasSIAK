@@ -6,6 +6,12 @@ import PopUpPembelian from "../PopUpPembelian/PopUpPembelian";
 import { useState, useEffect } from "react";
 
 const Kasir = (props) => {
+    const [dataVendor,setDataVendor] = useState()
+    useEffect(()=>{
+        setDataVendor(JSON.parse(localStorage.getItem("vendor")))
+    }
+        ,[DataNilai]
+    )
     const [DataNilai,setDataNilai] = useState([])
     useEffect(()=>{
         setDataNilai(JSON.parse(localStorage.getItem("pembelian")))
@@ -33,7 +39,7 @@ const Kasir = (props) => {
     const [popUpPembayaran, setPopUpPemb] = useState(false)
     return(
         <HistoryWrap>
-            {popUpPembayaran && <PopUpPembelian closePopUp={closePopUp} addData={addData}/>}
+            {popUpPembayaran && <PopUpPembelian dataVendor={dataVendor} closePopUp={closePopUp} addData={addData}/>}
             <HistoryContent>
                 <Title>Pembelian</Title>
                 <TabelJudul>
@@ -79,7 +85,7 @@ const Kasir = (props) => {
                     </Tabel>
                     )}
                     <TabelInput>
-                        <BtnBlue btnWidth="10vw" onClick={()=>{setPopUpPemb(true)}}>Tambah Barang</BtnBlue>
+                        <BtnBlue btnWidth="10vw" onClick={()=>{setPopUpPemb(true);console.log(dataVendor)}}>Tambah Barang</BtnBlue>
                     </TabelInput>
             </HistoryContent>
         </HistoryWrap>
