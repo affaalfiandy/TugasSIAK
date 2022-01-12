@@ -15,6 +15,7 @@ const PopUpPembelian = (props) =>{
         const harga = document.getElementById("harga").value
         const jumlah = document.getElementById("jumlah").value
         const diskon = document.getElementById("diskon").value
+        const vendor = document.getElementById("vendor-select").value
         const total = (harga*jumlah) - ((diskon/100)*(harga*jumlah))
         const data = {
             kode:kode,
@@ -22,7 +23,8 @@ const PopUpPembelian = (props) =>{
             qty:jumlah,
             diskon:diskon,
             harga:harga,
-            total:total
+            total:total,
+            vendor:vendor
         }
         props.addData(data)
     }

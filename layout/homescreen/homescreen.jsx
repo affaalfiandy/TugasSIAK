@@ -23,6 +23,9 @@ const HomeScreen = () =>{
                     <Link href="/setup">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>SetUp</p></BtnBlue>
                     </Link>
+                    <Link href="/stok">
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Stok</p></BtnBlue>
+                    </Link>
                 </BtnDiv>
             </ContentWrapper>
             
