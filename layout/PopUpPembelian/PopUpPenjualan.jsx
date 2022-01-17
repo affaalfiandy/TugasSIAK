@@ -5,18 +5,21 @@ import { BackdropPembelian, KolomInput, PopUpLayer, TabelInput } from "./PopUpPe
 import { P } from "../../components/typography/typo"
 
 
-const PopUpPembelian = (props) =>{
+const PopUpPenjualan = (props) =>{
     const dataStok = props.dataStok
+    const dataCust = props.dataCust
     const submitPop = (e) =>{
         e.preventDefault()
         props.closePopUp(false)
         const jumlah = document.getElementById("jumlah").value
         const diskon = document.getElementById("diskon").value
         const kode = document.getElementById("vendor-select").value
+        const idCust = document.getElementById("cust-select").value
         const data = {
             kode:kode,
             qty:jumlah,
             diskon:diskon,
+            idCust:idCust
         }
         props.addData(data)
     }
@@ -39,6 +42,16 @@ const PopUpPembelian = (props) =>{
                     </select>
                     </KolomInput>
                     <KolomInput>
+                    <Label for="pet-select">Pilih Customer</Label>
+                    <select name="pets" id="cust-select">
+                        <option value="">Pilih Customer</option>
+                    {dataCust==null ? <P txMargin="10px">Data Kosong</P> : dataCust.map((val)=>
+                        <option value={val.kode}>{val.kode}</option>
+                    )}
+                        
+                    </select>
+                    </KolomInput>
+                    <KolomInput>
                         <Label>Jumlah</Label>
                         <TextBox id="jumlah"></TextBox>
                     </KolomInput>
@@ -54,4 +67,4 @@ const PopUpPembelian = (props) =>{
     )
 }
 
-export default PopUpPembelian
+export default PopUpPenjualan

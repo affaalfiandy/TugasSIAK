@@ -1,22 +1,24 @@
-import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput } from "./kasir.style";
+import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput } from "./penjualan.style";
 import { P, Title, A } from "../../components/typography/typo";
 import { BtnBlue } from "../../components/button/button";
-import PopUpPembelian from "../PopUpPembelian/PopUpPembelian";
+import PopUpPenjualan from "../PopUpPembelian/PopUpPenjualan";
 
 import { useState, useEffect } from "react";
 
-const Kasir = (props) => {
+const Penjualan = (props) => {
     const [dataVendor,setDataVendor] = useState()
     const [dataStok, setDataStok] = useState()
+    const [dataCust, setDataCust] = useState()
     useEffect(()=>{
         setDataVendor(JSON.parse(localStorage.getItem("vendor")))
         setDataStok(JSON.parse(localStorage.getItem("stok")))
+        setDataCust(JSON.parse(localStorage.getItem("customer")))
     }
         ,[DataNilai]
     )
     const [DataNilai,setDataNilai] = useState([])
     useEffect(()=>{
-        setDataNilai(JSON.parse(localStorage.getItem("pembelian")))
+        setDataNilai(JSON.parse(localStorage.getItem("penjualan")))
     }
         ,[DataNilai]
     )
@@ -33,6 +35,13 @@ const Kasir = (props) => {
                 break
             }
             }
+            let idCust = null
+            for(let y in dataCust){
+            if(dataCust[y].kode===data.idCust){
+                idCust = y
+                break
+            }
+            }
             const DataTemp = {
                 kode:data.kode,
                 nama:dataStok[id].nama,
@@ -40,22 +49,32 @@ const Kasir = (props) => {
                 qty:data.qty,
                 diskon:data.diskon,
                 total:(data.qty*dataStok[id].harga)-(data.qty*dataStok[id].harga*(data.diskon/100)),
-                vendor:dataStok[id].vendor
+                customer:dataCust[idCust].nama
             }
             const dataStokTemp = [...dataStok]
-            dataStokTemp[id].qty = Number(dataStokTemp[id].qty)+Number(data.qty)
-            dataStokTemp[id].total = Number(dataStokTemp[id].total)+Number(data.qty*dataStok[id].harga)-(data.qty*dataStok[id].harga*(data.diskon/100))
+            dataStokTemp[id].qty = Number(dataStokTemp[id].qty)-Number(data.qty)
+            dataStokTemp[id].total = Number(dataStokTemp[id].total)-Number((Number(data.qty)*Number(dataStok[id].harga))-(Number(data.qty)*Number(dataStok[id].harga)*(Number(data.diskon/100))))
             setDataStok(dataStokTemp)
+            const dataCustTemp = [...dataCust]
+            dataCustTemp[idCust].saldo = Number(dataCustTemp[idCust].saldo)-Number((Number(data.qty)*Number(dataStok[id].harga))-(Number(data.qty)*Number(dataStok[id].harga)*(Number(data.diskon/100))))
+            setDataCust(dataCustTemp)
             const datain = []
             datain.push(DataTemp)
             setDataNilai(datain)
-            localStorage.setItem("pembelian",JSON.stringify(datain))
+            localStorage.setItem("penjualan",JSON.stringify(datain))
         }
         else{
             let id = null
             for(let x in dataStok){
             if(dataStok[x].kode===data.kode){
                 id = x
+                break
+            }
+            }
+            let idCust = null
+            for(let y in dataCust){
+            if(dataCust[y].kode===data.idCust){
+                idCust = y
                 break
             }
             }
@@ -66,28 +85,32 @@ const Kasir = (props) => {
                 qty:data.qty,
                 diskon:data.diskon,
                 total:(data.qty*dataStok[id].harga)-(data.qty*dataStok[id].harga*(data.diskon/100)),
-                vendor:dataStok[id].vendor
+                customer:dataCust[idCust].nama
             }
             const dataStokTemp = [...dataStok]
-            dataStokTemp[id].qty = Number(dataStokTemp[id].qty)+Number(data.qty)
-            dataStokTemp[id].total = Number(dataStokTemp[id].total)+Number(data.qty*dataStok[id].harga)-(data.qty*dataStok[id].harga*(data.diskon/100))
+            dataStokTemp[id].qty = Number(dataStokTemp[id].qty)-Number(data.qty)
+            dataStokTemp[id].total = Number(dataStokTemp[id].total)-Number((Number(data.qty)*Number(dataStok[id].harga))-(Number(data.qty)*Number(dataStok[id].harga)*(Number(data.diskon/100))))
             setDataStok(dataStokTemp)
+            const dataCustTemp2 = [...dataCust]
+            dataCustTemp2[idCust].saldo = Number(dataCustTemp2[idCust].saldo)-Number((Number(data.qty)*Number(dataStok[id].harga))-(Number(data.qty)*Number(dataStok[id].harga)*(Number(data.diskon/100))))
+            setDataCust(dataCustTemp2)
             const temp = [...DataNilai]
             temp.push(DataTemp2)
             setDataNilai(temp)
-            localStorage.setItem("pembelian",JSON.stringify(temp))
+            localStorage.setItem("penjualan",JSON.stringify(temp))
         }
     }
     const [popUpPembayaran, setPopUpPemb] = useState(false)
     const selesaiBeli = () => {
         
         localStorage.setItem("stok",JSON.stringify(dataStok))
+        localStorage.setItem("customer",JSON.stringify(dataCust))
         window.print()
-        localStorage.removeItem("pembelian")
+        localStorage.removeItem("penjualan")
     }
     return(
         <HistoryWrap>
-            {popUpPembayaran && <PopUpPembelian dataStok={dataStok} closePopUp={closePopUp} addData={addData}/>}
+            {popUpPembayaran && <PopUpPenjualan dataStok={dataStok} closePopUp={closePopUp} addData={addData} dataCust={dataCust}/>}
             <HistoryContent>
                 <Title>Pembelian</Title>
                 <TabelJudul>
@@ -95,7 +118,7 @@ const Kasir = (props) => {
                         <Title>Kode Barang</Title>
                     </KolomJudul>
                     <KolomJudul>
-                        <Title>Nama</Title>
+                        <Title>Nama Barang</Title>
                     </KolomJudul>
                     <KolomJudul>
                         <Title>Harga</Title>
@@ -110,7 +133,7 @@ const Kasir = (props) => {
                         <Title>Total Harga</Title>
                     </KolomJudul>
                     <KolomJudul>
-                        <Title>Vendor/Suplier</Title>
+                        <Title>Customer</Title>
                     </KolomJudul>
                 </TabelJudul>
                     {DataNilai==null ? <P txMargin="10px">Data Kosong</P> : DataNilai.map((val)=>
@@ -134,7 +157,7 @@ const Kasir = (props) => {
                         <P txColor="#242424">{val.total}</P>
                     </Kolom>
                     <Kolom>
-                        <P txColor="#242424">{val.vendor}</P>
+                        <P txColor="#242424">{val.customer}</P>
                     </Kolom>
                     </Tabel>
                     )}
@@ -147,4 +170,4 @@ const Kasir = (props) => {
     )
 }
 
-export default Kasir
+export default Penjualan

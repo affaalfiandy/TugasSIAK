@@ -14,17 +14,14 @@ const HomeScreen = () =>{
                 <Title txSize='4rem'>Tugas SIAK</Title>
                 <P>masuk sebagai</P>
                 <BtnDiv>
-                    <Link href="/loginguru">
+                    <Link href="/penjualan">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Penjualan</p></BtnBlue>
                     </Link>
-                    <Link href="/loginpembelian">
+                    <Link href="/pembelian">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Pembelian</p></BtnBlue>
                     </Link>
                     <Link href="/setup">
                         <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>SetUp</p></BtnBlue>
-                    </Link>
-                    <Link href="/stok">
-                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Stok</p></BtnBlue>
                     </Link>
                 </BtnDiv>
             </ContentWrapper>

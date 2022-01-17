@@ -1,16 +1,47 @@
 import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput } from "./stok.style";
 import { P, Title, A } from "../../components/typography/typo";
 import { BtnBlue } from "../../components/button/button";
-import PopUpPembelian from "../PopUpPembelian/PopUpPembelian";
+import PopUpStok from "../PopUpStop/PopUpStok";
 
 import { useState, useEffect } from "react";
 
-const Stok = (props) => {
-    const DataNilai = JSON.parse(localStorage.getItem("stok"))
+const Kasir = (props) => {
+    const [dataVendor,setDataVendor] = useState()
+    useEffect(()=>{
+        setDataVendor(JSON.parse(localStorage.getItem("vendor")))
+    }
+        ,[DataNilai]
+    )
+    const [DataNilai,setDataNilai] = useState([])
+    useEffect(()=>{
+        setDataNilai(JSON.parse(localStorage.getItem("stok")))
+    }
+        ,[DataNilai]
+    )
+
+    const closePopUp = (val) =>{
+        setPopUpPemb(val)
+    }
+    const addData = (data) => {
+        if(DataNilai==null){
+            const datain = []
+            datain.push(data)
+            setDataNilai(datain)
+            localStorage.setItem("stok",JSON.stringify(datain))
+        }
+        else{
+        const temp = [...DataNilai]
+        temp.push(data)
+        setDataNilai(temp)
+        localStorage.setItem("stok",JSON.stringify(temp))
+        }
+    }
+    const [popUpPembayaran, setPopUpPemb] = useState(false)
     return(
         <HistoryWrap>
+            {popUpPembayaran && <PopUpStok dataVendor={dataVendor} closePopUp={closePopUp} addData={addData}/>}
             <HistoryContent>
-                <Title>Pembelian</Title>
+                <Title>Stok</Title>
                 <TabelJudul>
                     <KolomJudul>
                         <Title>Kode Barang</Title>
@@ -59,9 +90,12 @@ const Stok = (props) => {
                     </Kolom>
                     </Tabel>
                     )}
+                    <TabelInput>
+                        <BtnBlue btnWidth="10vw" onClick={()=>{setPopUpPemb(true);console.log(dataVendor)}}>Tambah Barang</BtnBlue>
+                    </TabelInput>
             </HistoryContent>
         </HistoryWrap>
     )
 }
 
-export default Stok
+export default Kasir

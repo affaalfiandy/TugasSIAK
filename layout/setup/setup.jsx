@@ -1,71 +1,33 @@
-import { HistoryContent, HistoryWrap, Tabel, Kolom, TabelJudul, KolomJudul, TabelInput } from "./setup.style";
-import { P, Title, A } from "../../components/typography/typo";
-import { BtnBlue } from "../../components/button/button";
-import PopUpSetup from "../popupsetup/popupsetup";
+//Import Component
+import { BtnBlue } from "../../components/button/button"
+import { P, Title } from "../../components/typography/typo";
+//Import Style
+import { BtnDiv, ContentWrapper, HomeWrapper } from "./setupindex.style";
 
-import { useState, useEffect } from "react";
+//Import next component
+import Link from "next/link";
 
-const Setup = (props) => {
-    const [DataNilai,setDataNilai] = useState([])
-    useEffect(()=>{
-        setDataNilai(JSON.parse(localStorage.getItem("vendor")))
-    }
-        ,[DataNilai]
-    )
-
-    const closePopUp = (val) =>{
-        setPopUpPemb(val)
-    }
-    const addData = (data) => {
-        if(DataNilai==null){
-            const datain = []
-            datain.push(data)
-            setDataNilai(datain)
-            localStorage.setItem("vendor",JSON.stringify(datain))
-        }
-        else{
-        const temp = [...DataNilai]
-        temp.push(data)
-        setDataNilai(temp)
-        localStorage.setItem("vendor",JSON.stringify(temp))
-        }
-    }
-    const [popUpPembayaran, setPopUpPemb] = useState(false)
+const SetupIndex = () =>{
     return(
-        <HistoryWrap>
-            {popUpPembayaran && <PopUpSetup closePopUp={closePopUp} addData={addData}/>}
-            <HistoryContent>
-                <Title>Pembelian</Title>
-                <TabelJudul>
-                    <KolomJudul>
-                        <Title>Kode Vendor</Title>
-                    </KolomJudul>
-                    <KolomJudul>
-                        <Title>Nama Vendor</Title>
-                    </KolomJudul>
-                    <KolomJudul>
-                        <Title>Alamat</Title>
-                    </KolomJudul>
-                </TabelJudul>
-                    {DataNilai==null ? <P txMargin="10px">Data Kosong</P> : DataNilai.map((val)=>
-                    <Tabel>
-                    <Kolom>
-                        <P txColor="#242424">{val.kode}</P>
-                    </Kolom>
-                    <Kolom>
-                        <P txColor="#242424">{val.nama}</P>
-                    </Kolom>
-                    <Kolom>
-                        <P txColor="#242424">{val.alamat}</P>
-                    </Kolom>
-                    </Tabel>
-                    )}
-                    <TabelInput>
-                        <BtnBlue btnWidth="10vw" onClick={()=>{setPopUpPemb(true)}}>Tambah Vendor</BtnBlue>
-                    </TabelInput>
-            </HistoryContent>
-        </HistoryWrap>
+        <HomeWrapper>
+            <ContentWrapper>
+                <Title txSize='4rem'>Tugas SIAK</Title>
+                <P>masuk sebagai</P>
+                <BtnDiv>
+                    <Link href="/setup/setupcust">
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Costumer</p></BtnBlue>
+                    </Link>
+                    <Link href="/setup/setupsuplier">
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Supplier</p></BtnBlue>
+                    </Link>
+                    <Link href="/setup/setupbarang">
+                        <BtnBlue btnFontSize='1.5rem' btnWidth='200px' btnHeight='50px' btnMargin='10px'><p>Barang</p></BtnBlue>
+                    </Link>
+                </BtnDiv>
+            </ContentWrapper>
+            
+        </HomeWrapper>
     )
-}
+};
 
-export default Setup
+export default SetupIndex
