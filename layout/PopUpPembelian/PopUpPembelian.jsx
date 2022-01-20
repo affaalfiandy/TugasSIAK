@@ -7,16 +7,19 @@ import { P } from "../../components/typography/typo"
 
 const PopUpPembelian = (props) =>{
     const dataStok = props.dataStok
+    const dataVendor = props.dataVendor
     const submitPop = (e) =>{
         e.preventDefault()
         props.closePopUp(false)
         const jumlah = document.getElementById("jumlah").value
         const diskon = document.getElementById("diskon").value
         const kode = document.getElementById("vendor-select").value
+        const vendor = document.getElementById("vendor").value
         const data = {
             kode:kode,
             qty:jumlah,
             diskon:diskon,
+            vendor:vendor
         }
         props.addData(data)
     }
@@ -45,6 +48,16 @@ const PopUpPembelian = (props) =>{
                     <KolomInput>
                         <Label>Diskon</Label>
                         <TextBox id="diskon"></TextBox>
+                    </KolomInput>
+                    <KolomInput>
+                    <Label for="pet-select">Vendor</Label>
+                    <select name="pets" id="vendor">
+                        <option value="">Pilih id</option>
+                    {dataVendor==null ? <P txMargin="10px">Data Kosong</P> : dataVendor.map((val)=>
+                        <option value={val.nama}>{val.nama}</option>
+                    )}
+                        
+                    </select>
                     </KolomInput>
                     <BtnGray btnWidth="100px" btnMargin="5px" onClick={closePop}>Batal</BtnGray>
                     <BtnBlue btnWidth="100px" btnMargin="5px" onClick={submitPop}>Simpan</BtnBlue>

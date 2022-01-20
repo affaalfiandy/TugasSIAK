@@ -36,6 +36,21 @@ const Kasir = (props) => {
         localStorage.setItem("stok",JSON.stringify(temp))
         }
     }
+    const hapusHandler = (e) =>{
+        e.preventDefault()
+        const dataDelTemp = [...DataNilai]
+        let id = null
+        for(let x in dataDelTemp){
+            if(dataDelTemp[x].kode==e.target.id){
+                id = x
+                break
+            }
+        }
+        dataDelTemp.splice(dataDelTemp[id+1],1)
+        localStorage.setItem("stok",JSON.stringify(dataDelTemp))
+        setDataNilai(dataDelTemp)
+        console.log(dataDelTemp)
+    }
     const [popUpPembayaran, setPopUpPemb] = useState(false)
     return(
         <HistoryWrap>
@@ -64,6 +79,9 @@ const Kasir = (props) => {
                     <KolomJudul>
                         <Title>Vendor/Suplier</Title>
                     </KolomJudul>
+                    <KolomJudul>
+                        <Title>Hapus</Title>
+                    </KolomJudul>
                 </TabelJudul>
                     {DataNilai==null ? <P txMargin="10px">Data Kosong</P> : DataNilai.map((val)=>
                     <Tabel>
@@ -87,6 +105,9 @@ const Kasir = (props) => {
                     </Kolom>
                     <Kolom>
                         <P txColor="#242424">{val.vendor}</P>
+                    </Kolom>
+                    <Kolom>
+                        <BtnBlue id={val.kode} onClick={hapusHandler} btnWidth="70px">Hapus</BtnBlue>
                     </Kolom>
                     </Tabel>
                     )}

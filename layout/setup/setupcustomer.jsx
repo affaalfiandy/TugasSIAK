@@ -31,6 +31,21 @@ const SetupCustomer = (props) => {
         }
     }
     const [popUpPembayaran, setPopUpPemb] = useState(false)
+    const hapusHandler = (e) =>{
+        e.preventDefault()
+        const dataDelTemp = [...DataNilai]
+        let id = null
+        for(let x in dataDelTemp){
+            if(dataDelTemp[x].kode==e.target.id){
+                id = x
+                break
+            }
+        }
+        dataDelTemp.splice(dataDelTemp[id],1)
+        localStorage.setItem("customer",JSON.stringify(dataDelTemp))
+        setDataNilai(dataDelTemp)
+        console.log(dataDelTemp)
+    }
     return(
         <HistoryWrap>
             {popUpPembayaran && <PopUpCustomer closePopUp={closePopUp} addData={addData}/>}
@@ -49,6 +64,9 @@ const SetupCustomer = (props) => {
                     <KolomJudul>
                         <Title>Saldo</Title>
                     </KolomJudul>
+                    <KolomJudul>
+                        <Title>Hapus</Title>
+                    </KolomJudul>
                 </TabelJudul>
                     {DataNilai==null ? <P txMargin="10px">Data Kosong</P> : DataNilai.map((val)=>
                     <Tabel>
@@ -63,6 +81,9 @@ const SetupCustomer = (props) => {
                     </Kolom>
                     <Kolom>
                         <P txColor="#242424">{val.saldo}</P>
+                    </Kolom>
+                    <Kolom>
+                        <BtnBlue id={val.kode} onClick={hapusHandler} btnWidth="70px">Hapus</BtnBlue>
                     </Kolom>
                     </Tabel>
                     )}

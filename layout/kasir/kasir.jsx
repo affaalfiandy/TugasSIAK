@@ -87,7 +87,7 @@ const Kasir = (props) => {
     }
     return(
         <HistoryWrap>
-            {popUpPembayaran && <PopUpPembelian dataStok={dataStok} closePopUp={closePopUp} addData={addData}/>}
+            {popUpPembayaran && <PopUpPembelian dataVendor={dataVendor} dataStok={dataStok} closePopUp={closePopUp} addData={addData}/>}
             <HistoryContent>
                 <Title>Pembelian</Title>
                 <TabelJudul>

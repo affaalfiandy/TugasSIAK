@@ -40,6 +40,7 @@ export const KolomJudul = styled.div`
 width:25%;
 display:block;
 border:2px solid #4B6587;
+margin-bottom:2px;
 `;
 
 export const TabelInput = styled.div`
